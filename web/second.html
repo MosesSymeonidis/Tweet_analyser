@@ -1,0 +1,158 @@
+<html>
+<header>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">body{background-image:url('https://abs.twimg.com/images/themes/theme1/bg.png') ;background-color: #c0deed !important;background-repeat:repeat-x;background-attachment:fixed;background-position:top center}</style>
+    <script>
+        function eventDetection() {
+            document.getElementById("type").setAttribute("value","event");
+            document.getElementById("form1").action = "TestServlet";
+            on();
+        }
+        function sentimentAnalysis() {
+            document.getElementById("type").setAttribute("value","senti");
+            document.getElementById("form1").action = "TestServlet";
+            on();
+        }
+        function on() {
+            document.getElementById('loader').style.visibility = 'visible';
+            document.getElementById('not_loader').style.display = 'none';
+
+        }</script>
+</header>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h1>
+                    <p/>Topic Detection & Sentiment Analysis 
+                    <p/><small><em>From twitter data for Champions League </em></small>
+                </h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <p><img src="football_twitter.png" class="img-responsive" alt="champions_league" class="img-rounded">
+            </div>
+        </div>
+        <div id="not_loader">
+            <form id="form1" name="form1" role="form" method="GET" action="">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"> 
+                                    <label>
+                                        General Options
+                                    </label>
+                                </h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Start Date:</label>
+                                            <input type="date" id="startDate" class="form-control" name="startDate" min="2014-05-05" max="2014-30-05" value="2014-05-05">
+                                            <label >Start Time:</label>
+                                            <input id="startTime" class="form-control" name="startTime" type="time" value="00:00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>End Date:</label>
+                                            <input id="endDate" class="form-control" name="endDate" min="2014-05-05" max="2014-30-05" value="2014-05-05" type="date">
+                                            <label >End Time:</label>
+                                            <input id="endTime" class="form-control" name="endTime" type="time" value="00:00">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p> 
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label> Select the bucket's duration:</label>
+
+                                            <select class="form-control" name="Duration">
+                                                <option value="1">One Minute</option>
+                                                <option value="5">Five Minutes</option>
+                                                <option value="10">Ten Minutes</option>
+                                                <option value="30">Half Hour</option>
+                                                <option value="60">Hour</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"> 
+                                    <label>
+                                        Options for Event Detection
+                                    </label>
+                                </h2>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>
+                                            Give the number of top words in every peak:
+                                        </label>
+                                        <input type="number" class="form-control" name="topKWords" value="5" min="1" max="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>
+                                            Give the number of top URLs in every peak:
+                                        </label>
+                                        <input type="number" class="form-control" name="topKUrls" value="5" min="1" max="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Give the number of top retweeted tweets in every peak:</label> 
+                                        <input type="number" value="5" class="form-control" name="topKTweets" min="1" max="10">
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <p> 
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-3"><button type="submit" onclick="eventDetection()" class="btn btn-default btn-lg btn-block">Event Detection</button></div>
+                        <div class="col-md-2 col-md-offset-2"><button type="submit" onclick="sentimentAnalysis()" class="btn btn-default btn-lg btn-block">Sentiment Analysis</button></div>
+                    </div>
+                    <input type="text" id="type" name="type" style="visibility: hidden">
+            </form>
+
+
+        
+        </div>
+</div>
+    
+    <div class="col-md-2 col-md-offset-5">
+        <img src="giphy.gif" class="img-responsive" id="loader"
+             style="visibility: hidden">
+    </div>
+             
+</body>
+</html>
